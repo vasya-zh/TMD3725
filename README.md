@@ -56,8 +56,8 @@ void print_color_json(optics_val color_data, uint32_t timestamp);
 
 ## Examples
 
-TMD3725_basic.ino - basic color reading in a loop example
-TCA9544_TMD3725.ino - addressable example for several color sensors with TCA9544A multiplexor (cause TMD3725 does not have address setting feature)
+* TMD3725_basic.ino - basic color reading in a loop example
+* TCA9544_TMD3725.ino - addressable example for several color sensors with TCA9544A multiplexor (cause TMD3725 does not have address setting feature)
 
 ## Serial monitor output
 ```
