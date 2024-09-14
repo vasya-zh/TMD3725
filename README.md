@@ -4,7 +4,7 @@ Arduino library for TMD37253 and TMD37253M RGB color sensor with proximity and a
 
 [TM3725 datasheet](https://look.ams-osram.com/m/6a4d0816b7d3a4bf/original/TMD3725-ALS-Color-and-Proximity-Sensor-Module.pdf)
 
-<img src="img/TMD3725_diagram.webp" width="100" height="100">
+<img src="img/TMD3725_diagram.webp" width="300">
 
 ## Functions
 
