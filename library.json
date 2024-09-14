@@ -1,9 +1,9 @@
 {
     "name": "TMD3725",
     "version": "0.1.0",
-    "description": "Arduino library to control the TMD3725 RGB color sensor",
+    "description": "Arduino library for TMD3725 RGB color sensor",
     "keywords": [
-        "io"
+        "Sensors, color, colour"
     ],
     "repository":
     {
