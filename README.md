@@ -1,8 +1,8 @@
 # TMD3725 Arduino library
 
-Implementation of an Arduino library to support the TMD37253 and TMD37253M RGB, proximity and ambient light sensor from AMS
+Arduino library for TMD37253 and TMD37253M RGB color sensor with proximity and ambient light functions
 
-TM3725 datasheet: https://look.ams-osram.com/m/6a4d0816b7d3a4bf/original/TMD3725-ALS-Color-and-Proximity-Sensor-Module.pdf
+[TM3725 datasheet](https://look.ams-osram.com/m/6a4d0816b7d3a4bf/original/TMD3725-ALS-Color-and-Proximity-Sensor-Module.pdf)
 
 ![TMD3725 internal diagram](img/TMD3725_diagram.webp)
 
