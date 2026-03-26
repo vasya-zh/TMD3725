@@ -7,7 +7,7 @@
 TMD3725 tmd3725;
 optics_val colordata;
 
-REDIRECT_STDOUT_TO(Serial);
+//REDIRECT_STDOUT_TO(Serial);
 int reginfo[35];
 int colorarray[9];
 

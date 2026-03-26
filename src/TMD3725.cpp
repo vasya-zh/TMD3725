@@ -117,47 +117,66 @@ int TMD3725::get_all_data(int reginfo[]) {
     	reginfo[i] = I2CGetreg(TMD3725ADDR, ENABLE_ADDR+i);
     	//printf("%d \n", reginfo[i]);
         if (reginfo[i] == -1) {
-            printf("Error happens when reading some of ENABLE_ADDR to PILT register value.\n");
+            //printf("Error happens when reading some of ENABLE_ADDR to PILT register value.\n");
             return -1;
         }
     }
     /*PIHT*/
-    if ((reginfo[9] = I2CGetreg(TMD3725ADDR, PIHT_ADDR)) == -1) {printf("Error happens when reading register value."); return -1;}
+    if ((reginfo[9] = I2CGetreg(TMD3725ADDR, PIHT_ADDR)) == -1) {
+        //printf("Error happens when reading register value."); 
+        return -1;
+    }
     /*PERS to PCFG1*/
     for (int i=0; i<4; i++) {
         if ((reginfo[10+i] = I2CGetreg(TMD3725ADDR, PERS_ADDR+i)) == -1) {
-            printf("Error happens when reading PIHT register value.\n");
+            //printf("Error happens when reading PIHT register value.\n");
             return -1;
         }
     }
     /*CFG1 to PDATA*/
     for (int i=0; i<13; i++) {
         if ((reginfo[14+i] = I2CGetreg(TMD3725ADDR, CFG1_ADDR+i)) == -1) {
-            printf("Error happens when reading PDATA register value.\n");
+            //printf("Error happens when reading PDATA register value.\n");
             return -1;
         }
     }
     /*CFG2*/
-    if ((reginfo[27] = I2CGetreg(TMD3725ADDR, CFG2_ADDR)) == -1) {printf("Error happens when reading CFG2_ADDR register value.\n"); return -1;}
+    if ((reginfo[27] = I2CGetreg(TMD3725ADDR, CFG2_ADDR)) == -1) {
+        //printf("Error happens when reading CFG2_ADDR register value.\n"); 
+        return -1;}
     /*CFG3*/
-    if ((reginfo[28] = I2CGetreg(TMD3725ADDR, CFG3_ADDR)) == -1) {printf("Error happens when reading CFG3_ADDR register value.\n"); return -1;}
+    if ((reginfo[28] = I2CGetreg(TMD3725ADDR, CFG3_ADDR)) == -1) {
+        //printf("Error happens when reading CFG3_ADDR register value.\n"); 
+        return -1;}
     /*POFFSETL*/
-    if ((reginfo[29] = I2CGetreg(TMD3725ADDR, POFFSETL_ADDR)) == -1) {printf("Error happens when reading POFFSETL_ADDR register value.\n"); return -1;}
+    if ((reginfo[29] = I2CGetreg(TMD3725ADDR, POFFSETL_ADDR)) == -1) {
+        //printf("Error happens when reading POFFSETL_ADDR register value.\n"); 
+        return -1;}
     /*POFFSETH*/
-    if ((reginfo[30] = I2CGetreg(TMD3725ADDR, POFFSETH_ADDR)) == -1) {printf("Error happens when reading POFFSETH_ADDR register value.\n"); return -1;}
+    if ((reginfo[30] = I2CGetreg(TMD3725ADDR, POFFSETH_ADDR)) == -1) {
+        //printf("Error happens when reading POFFSETH_ADDR register value.\n"); 
+        return -1;}
     /*CALIB*/
-    if ((reginfo[31] = I2CGetreg(TMD3725ADDR, CALIB_ADDR)) == -1) {printf("Error happens when reading CALIB_ADDR register value.\n"); return -1;}
+    if ((reginfo[31] = I2CGetreg(TMD3725ADDR, CALIB_ADDR)) == -1) {
+        //printf("Error happens when reading CALIB_ADDR register value.\n"); 
+        return -1;}
     /*CALIBCFG*/
-    if ((reginfo[32] = I2CGetreg(TMD3725ADDR, CALIBCFG_ADDR)) == -1) {printf("Error happens when reading CALIBCFG_ADDR register value.\n"); return -1;}
+    if ((reginfo[32] = I2CGetreg(TMD3725ADDR, CALIBCFG_ADDR)) == -1) {
+        //printf("Error happens when reading CALIBCFG_ADDR register value.\n"); 
+        return -1;}
     /*CALIBSTAT*/
-    if ((reginfo[33] = I2CGetreg(TMD3725ADDR, CALIBSTAT_ADDR)) == -1) {printf("Error happens when reading CALIBSTAT_ADDR register value.\n"); return -1;}
+    if ((reginfo[33] = I2CGetreg(TMD3725ADDR, CALIBSTAT_ADDR)) == -1) {
+        //printf("Error happens when reading CALIBSTAT_ADDR register value.\n"); 
+        return -1;}
     /*INTENAB*/
-    if ((reginfo[34] = I2CGetreg(TMD3725ADDR, INTENAB_ADDR)) == -1) {printf("Error happens when reading INTENAB_ADDR register value.\n"); return -1;}
-    printf("REG[35]: ");
+    if ((reginfo[34] = I2CGetreg(TMD3725ADDR, INTENAB_ADDR)) == -1) {
+        //printf("Error happens when reading INTENAB_ADDR register value.\n"); 
+        return -1;}
+    //printf("REG[35]: ");
     for (unsigned char k = 0; k < 35; k++) {
-        printf("%02X ", reginfo[k]);
+        //printf("%02X ", reginfo[k]);
     }
-    printf("\n\r");
+    //printf("\n\r");
     return 0;
 }
 
@@ -226,29 +245,37 @@ int TMD3725::init(int reginfo[]) {
      * RETURN: 0 - success
      *         -1 - error
      */
+
     if (set_atime(reginfo, 1) != -1) {
-        printf("[DEVICE-0x%X]Set integration time to 1 integrated cycles.\n", reginfo[16]);
-    } 
+        //printf("[DEVICE-0x%X]Set integration time to 1 integrated cycles.\n", reginfo[16]);
+        //printf("Set integration time to 1 integrated cycles.\n");
+    }
     else {
-        printf("Failed to set integration time.\n", reginfo[16]);
+        //printf("Failed to set integration time.\n");//", reginfo[16]);
         return -1;
     }
 
     if ((set_cfg1(reginfo, 0, x4)) != -1) {
-        printf("[DEVICE-0x%X]Set gain to x4.\n", reginfo[16]);
+        //printf("[DEVICE-0x%X]Set gain to x4.\n", reginfo[16]);
+        //printf("[DEVICE-0x]Set gain to x4.\n");
     }
     else {
-        printf("Failed to set gain.\n");
+        //printf("Failed to set gain.\n");
+        return -1;
     }
     
     if ((enable_sensor(reginfo, 0, 1, 1)) != -1) {
-        printf("[DEVICE-0x%X]Enable color integration cycle.\n", reginfo[16]);
+        //printf("[DEVICE-0x%X]Enable color integration cycle.\n", reginfo[16]);
+        //printf("[DEVICE-0x]Enable color integration cycle.\n");
     }
     else {
-        printf("Failed to enable.\n");
+        //printf("Failed to enable.\n");
         return -1;
     }
+
+    return -1;
 }
+
 
 int TMD3725::get_optics_data(int color_array[]) {
     /*
@@ -259,16 +286,16 @@ int TMD3725::get_optics_data(int color_array[]) {
      * RETURN: 0 - success
      *         -1 - error
      */
-        printf("CLR   RED   GRN   BLU   PRX \n");
+        //printf("CLR   RED   GRN   BLU   PRX \n");
   	//          00 00 00 00 00 00 00 00 00 
     for (int i=0; i<9; i++) {
         if ((color_array[i] = I2CGetreg(TMD3725ADDR, CDATAL_ADDR+i)) == -1) {
-            printf("Error happens when reading color value.");
+            //printf("Error happens when reading color value.");
             return -1;
         }
-        else printf("%02X ", color_array[i]);
+        //else printf("%02X ", color_array[i]);
     }
-    printf("\n\r");
+    //printf("\n\r");
     return 0;
 }
 
@@ -450,7 +477,7 @@ int TMD3725::combine_color(const int color_array[], int flag) {
     return tempcolor;
 }
 
-void TMD3725::print_color(const optics_val color_data) {
+int TMD3725::print_color(const optics_val color_data) {
     /*
      * FUNCTION: Print the color from the processed data struct
      * ---------
@@ -460,20 +487,46 @@ void TMD3725::print_color(const optics_val color_data) {
     /* formatting the data to left aligned, zero decimal, width of eight floats */
     rgb rgb_color;
     hsv hsv_color;
-    printf("|CLEAR   |RED     |GREEN   |BLUE    |LUX     |CCT     |\n");
-    printf("|%-8.0f|%-8.0f|%-8.0f|%-8.0f|%-8.0f|%-8.0f|\n", color_data.clear, color_data.red, color_data.green, 
-                                                            color_data.blue, color_data.Lux, color_data.CCT);
+    //printf("|CLEAR   |RED     |GREEN   |BLUE    |LUX     |CCT     |\n");
+    //printf("|%-8.0f|%-8.0f|%-8.0f|%-8.0f|%-8.0f|%-8.0f|\n", color_data.clear, color_data.red, color_data.green, color_data.blue, color_data.Lux, color_data.CCT);
     rgb_color.r = color_data.red/50;
     rgb_color.g = color_data.green/50;
     rgb_color.b = color_data.blue/50;
     hsv_color = rgb2hsv(rgb_color);
-    printf("|HUE     |SAT     |VUE      |\n");
-    printf("|%-8.0f|%-8.0f|%-8.0f|\n", hsv_color.h, hsv_color.s, hsv_color.v);
+    //printf("|HUE     |SAT     |VUE      |\n");
+    //printf("|%-8.0f|%-8.0f|%-8.0f|\n", hsv_color.h, hsv_color.s, hsv_color.v);
     //printf("RED     |GREEN   |BLUE\n");
     //printf("%-8.0f|%-8.0f|%-8.0f\n", color_data.red, color_data.green, color_data.blue);
     //rgb.r = color_data.red/255;
-    return;
+    return (hsv_color.h);
 }
+
+
+int TMD3725::return_Brigtness(const optics_val color_data) {
+    /*
+     * FUNCTION: Print the color from the processed data struct
+     * ---------
+     * INPUT: color_data - the struct that is storing caliberated color data
+     * RETURN: void
+     */
+    /* formatting the data to left aligned, zero decimal, width of eight floats */
+    rgb rgb_color;
+    hsv hsv_color;
+    //printf("|CLEAR   |RED     |GREEN   |BLUE    |LUX     |CCT     |\n");
+    //printf("|%-8.0f|%-8.0f|%-8.0f|%-8.0f|%-8.0f|%-8.0f|\n", color_data.clear, color_data.red, color_data.green, color_data.blue, color_data.Lux, color_data.CCT);
+    rgb_color.r = color_data.red/50;
+    rgb_color.g = color_data.green/50;
+    rgb_color.b = color_data.blue/50;
+    hsv_color = rgb2hsv(rgb_color);
+    //printf("|HUE     |SAT     |VUE      |\n");
+    //printf("|%-8.0f|%-8.0f|%-8.0f|\n", hsv_color.h, hsv_color.s, hsv_color.v);
+    //printf("RED     |GREEN   |BLUE\n");
+    //printf("%-8.0f|%-8.0f|%-8.0f\n", color_data.red, color_data.green, color_data.blue);
+    //rgb.r = color_data.red/255;
+    return (hsv_color.v*127);
+}
+
+
 
 float TMD3725::power(float base, int power) {
     /*
@@ -490,7 +543,7 @@ float TMD3725::power(float base, int power) {
     return result;
 }
 
-void TMD3725::print_color_json(optics_val color_data, uint32_t timestamp) {
+int TMD3725::print_color_json(optics_val color_data, uint32_t timestamp) {
     /*
      * FUNCTION: Print the color in json form from the processed data struct
      * ---------
@@ -505,9 +558,11 @@ void TMD3725::print_color_json(optics_val color_data, uint32_t timestamp) {
     rgb_color.b = color_data.blue/50;
     extern int motor_speed;
     hsv_color = rgb2hsv(rgb_color);
-    printf("{\"timestamp\":\"%d\",", timestamp); 
-    printf("\"hue\":\"%.0f\",", hsv_color.h); 
-    printf("\"saturation\":\"%.0f\",", hsv_color.s); 
-    printf("\"value\":\"%.0f\",", hsv_color.v); 
-    printf("}\n\r"); 
+    //printf("{\"timestamp\":\"%d\",", timestamp); 
+    //printf("\"hue\":\"%.0f\",", hsv_color.h); 
+    //printf("\"saturation\":\"%.0f\",", hsv_color.s); 
+    //printf("\"value\":\"%.0f\",", hsv_color.v); 
+    //printf("}\n\r"); 
+
+    return (hsv_color.h);
 }
