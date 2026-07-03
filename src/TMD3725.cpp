@@ -20,6 +20,7 @@
  */
 
 #include "TMD3725.h"
+#include <stdio.h>
 
 int TMD3725::I2CGetreg(unsigned char addr, int reg) {
     /*
@@ -273,7 +274,7 @@ int TMD3725::init(int reginfo[]) {
         return -1;
     }
 
-    return -1;
+    return 0;
 }
 
 
@@ -482,7 +483,7 @@ int TMD3725::print_color(const optics_val color_data) {
      * FUNCTION: Print the color from the processed data struct
      * ---------
      * INPUT: color_data - the struct that is storing caliberated color data
-     * RETURN: void
+     * RETURN: hue value
      */
     /* formatting the data to left aligned, zero decimal, width of eight floats */
     rgb rgb_color;
@@ -502,12 +503,12 @@ int TMD3725::print_color(const optics_val color_data) {
 }
 
 
-int TMD3725::return_Brigtness(const optics_val color_data) {
+int TMD3725::return_Brightness(const optics_val color_data) {
     /*
      * FUNCTION: Print the color from the processed data struct
      * ---------
      * INPUT: color_data - the struct that is storing caliberated color data
-     * RETURN: void
+     * RETURN: brightness value
      */
     /* formatting the data to left aligned, zero decimal, width of eight floats */
     rgb rgb_color;
@@ -526,6 +527,10 @@ int TMD3725::return_Brigtness(const optics_val color_data) {
     return (hsv_color.v*127);
 }
 
+
+int TMD3725::return_Brigtness(const optics_val color_data) {
+    return return_Brightness(color_data);
+}
 
 
 float TMD3725::power(float base, int power) {
@@ -549,20 +554,19 @@ int TMD3725::print_color_json(optics_val color_data, uint32_t timestamp) {
      * ---------
      * INPUT: color_data - the struct that is storing caliberated color data
      		  timestamp - current time in ms 
-     * RETURN: void
+     * RETURN: hue value
      */
     rgb rgb_color;
     hsv hsv_color;
     rgb_color.r = color_data.red/50;
     rgb_color.g = color_data.green/50;
     rgb_color.b = color_data.blue/50;
-    extern int motor_speed;
     hsv_color = rgb2hsv(rgb_color);
-    //printf("{\"timestamp\":\"%d\",", timestamp); 
-    //printf("\"hue\":\"%.0f\",", hsv_color.h); 
-    //printf("\"saturation\":\"%.0f\",", hsv_color.s); 
-    //printf("\"value\":\"%.0f\",", hsv_color.v); 
-    //printf("}\n\r"); 
+    printf("{\"timestamp\":\"%lu\",", (unsigned long)timestamp);
+    printf("\"hue\":\"%.0f\",", hsv_color.h);
+    printf("\"saturation\":\"%.0f\",", hsv_color.s);
+    printf("\"value\":\"%.0f\"", hsv_color.v);
+    printf("}\n\r");
 
     return (hsv_color.h);
 }

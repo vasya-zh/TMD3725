@@ -1,6 +1,6 @@
 # TMD3725 Arduino library
 
-Arduino library for TMD37253 and TMD37253M RGB color sensor with proximity and ambient light functions
+Arduino library for TMD3725 and TMD3725M RGB color sensors with proximity and ambient light functions.
 
 [TM3725 datasheet](https://look.ams-osram.com/m/6a4d0816b7d3a4bf/original/TMD3725-ALS-Color-and-Proximity-Sensor-Module.pdf)
 
@@ -8,7 +8,23 @@ Arduino library for TMD37253 and TMD37253M RGB color sensor with proximity and a
 
 ## Functions
 
-See [TMD3725](src/TMD3725.h) code comments for function description
+The library supports:
+
+* sensor initialization and configuration
+* full register data reading
+* color data reading
+* RGB to HSV conversion and HSV to RGB conversion
+* hue and brightness value helpers
+* JSON color data output
+
+Color helper functions:
+
+* `print_color()` returns the detected hue value.
+* `return_Brightness()` returns the brightness/value component.
+* `return_Brigtness()` is kept as a backward-compatible alias for the misspelled 0.3.0 API.
+* `print_color_json()` prints color data as JSON and returns the detected hue value.
+
+See [TMD3725](src/TMD3725.h) code comments for detailed function descriptions.
 
 ## Examples
 
@@ -17,17 +33,16 @@ See [TMD3725](src/TMD3725.h) code comments for function description
 
 ## Serial monitor output
 ```
-{"timestamp":"477573","hue":"60","saturation":"1","value":"0",}
-REG[35]: 07 00 1F 00 00 00 00 00 00 00 00 80 4F 80 01 00 E4 30 01 00 01 00 01 00 00 00 04 04 0C 00 00 00 50 00 00 
-CLR   RED   GRN   BLU   PRX 
-01 00 01 00 01 00 00 00 05 
-|CLEAR   |RED     |GREEN   |BLUE    |LUX     |CCT     |
-|1       |1       |1       |0       |17      |1804    |
-|HUE     |SAT     |VUE      |
-|60      |1       |0       |
+{"timestamp":"477573","hue":"60","saturation":"1","value":"0"}
 ```
 
 ## Tested on devices
 
 * [Arduino Nano - ATmega328P](https://docs.arduino.cc/hardware/nano/)
 * [Raspberry Pi Pico - RP2040](https://www.raspberrypi.com/products/raspberry-pi-pico/)
+
+## Supported architectures
+
+* esp8266
+* esp32
+* rp2040

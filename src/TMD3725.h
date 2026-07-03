@@ -148,6 +148,7 @@ public:
 	rgb hsv2rgb(hsv in); // convert hsv color structure to rgb color format
 
 	int print_color(optics_val color_data);    // get color data from the sensor and print it to stdout in rgb and hsv formats
+	int return_Brightness(optics_val color_data);    // get brightness value from the sensor color data
 	int return_Brigtness(optics_val color_data);    // get color data from the sensor and print it to stdout in rgb and hsv formats
 	int print_color_json(optics_val color_data, uint32_t timestamp); // get color data from the sensor and print it to stdout in json format
 };
